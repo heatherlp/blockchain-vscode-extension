@@ -694,6 +694,7 @@ export class UserInputUtil {
 
             runtimeWalletRegistryEntry.name = FabricWalletUtil.LOCAL_WALLET;
             runtimeWalletRegistryEntry.walletPath = runtimeWallet.getWalletPath();
+            runtimeWalletRegistryEntry.managedWallet = true;
             walletQuickPickItems.push( {
                 label: runtimeWalletRegistryEntry.name,
                 data: runtimeWalletRegistryEntry
