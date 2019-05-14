@@ -23,11 +23,11 @@ const packageJson = JSON.parse(fs.readFileSync('./package.json'));
 if (process.argv.includes('publish')) {
   packageJson.production = true;
   packageJson.activationEvents = ['*'];
+  packageJson.runNpmInstall = true;
 } else {
   if (packageJson.activationEvents.length > 1) {
     throw new Error('Activation events should be * when checked in');
   }
-
   packageJson.activationEvents = [];
 
   packageJson.actualActivationEvents.onView.forEach((event) => {

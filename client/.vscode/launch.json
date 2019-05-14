@@ -30,7 +30,9 @@
       "outFiles": [
         "${workspaceFolder}/out/test/**/*.js"
       ],
-      "preLaunchTask": "npm: watch"
+      "preLaunchTask": "localUnitTests",
+      "postDebugTask": "enableNpmInstall"
+      
     },
     {
       "name": "Debug Unit Tests (no coverage)",
@@ -44,10 +46,11 @@
       "outFiles": [
         "${workspaceFolder}/out/test/**/*.js"
       ],
-      "preLaunchTask": "npm: watch",
+      "preLaunchTask": "localUnitTests",
       "env": {
         "WITHOUTCOVERAGE": "true"
-      }
+      },
+      "postDebugTask": "enableNpmInstall"
     },
     {
       "name": "Integration Tests",

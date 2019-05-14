@@ -20,6 +20,7 @@
         "theme": "dark"
     },
     "production": false,
+    "runNpmInstall": false,
     "engines": {
         "vscode": "^1.32.0"
     },
@@ -1139,6 +1140,9 @@
         "lint": "npm run tslint 'src/**/*.ts' 'test/**/*.test.ts' 'integrationTest/tests/integration.test.ts' 'integrationTest/nodeTests/integrationNode.test.ts'",
         "updatePackageJSON": "node ../.travis/rewritePackageJson.js",
         "productionFlag": "node ../.travis/rewritePackageJson.js publish",
+        "disableNpmInstall": "node ../.travis/toggleNpmInstall.js",
+        "enableNpmInstall": "node ../.travis/toggleNpmInstall.js enable",
+        "checkNpmInstall": "node ../.travis/toggleNpmInstall.js check",
         "integrationTests": "./integrationTest/scripts/start-integration-tests.sh && npm run compile",
         "localize": "vscl out/src/**/*.js"
     },

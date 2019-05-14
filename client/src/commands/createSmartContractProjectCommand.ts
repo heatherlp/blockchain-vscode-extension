@@ -95,7 +95,7 @@ export async function createSmartContractProject(): Promise<void> {
             'description': 'My Smart Contract',
             'author': 'John Doe',
             'license': 'Apache-2.0',
-            'skip-install': !packageJson.production,
+            'skip-install': !packageJson.runNpmInstall,
             'asset': assetType
         };
 

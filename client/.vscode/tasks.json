@@ -17,6 +17,45 @@
             }
         },
         {
+            "label": "npmCompile",
+            "type": "npm",
+            "script": "compile",
+            "isBackground": true,
+            "presentation": {
+                "reveal": "never"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "disableNpmInstall",
+            "type": "npm",
+            "script": "disableNpmInstall",
+            "isBackground": true,
+            "presentation": {
+                "reveal": "never"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "enableNpmInstall",
+            "type": "npm",
+            "script": "enableNpmInstall",
+            "isBackground": true,
+            "presentation": {
+                "reveal": "never"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
             "type": "npm",
             "script": "integrationTests",
             "isBackground": false,
@@ -28,6 +67,13 @@
                 "isDefault": true
             },
             "problemMatcher": "$tsc-watch"
+        },
+        {
+            "label": "localUnitTests",
+            "dependsOn": [
+                "disableNpmInstall",
+                "npmCompile"
+            ]
         }
     ]
 }
