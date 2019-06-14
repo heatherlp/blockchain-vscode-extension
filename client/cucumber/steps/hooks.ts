@@ -42,6 +42,8 @@ export enum LanguageType {
 }
 
 let firstTime: boolean = false; // Flag used for making sure we do some setup once
+const extDir: string = path.join(__dirname, '..', '..', '..', 'cucumber', 'tmp');
+const contractDir: string = path.join(extDir, 'contracts');
 
 module.exports = function(): any {
 
@@ -79,8 +81,6 @@ module.exports = function(): any {
 
                 VSCodeBlockchainOutputAdapter.instance().setConsole(true);
 
-                const extDir: string = path.join(__dirname, '..', '..', '..', 'cucumber', 'tmp');
-
                 await vscode.workspace.getConfiguration().update(SettingConfigurations.EXTENSION_DIRECTORY, extDir, vscode.ConfigurationTarget.Global);
                 const packageDir: string = path.join(extDir, 'packages');
                 let exists: boolean = await fs.pathExists(packageDir);
@@ -89,7 +89,6 @@ module.exports = function(): any {
                     await fs.remove(packageDir);
                 }
 
-                const contractDir: string = path.join(extDir, 'contracts');
                 exists = await fs.pathExists(contractDir);
 
                 if (exists) {
@@ -109,5 +108,11 @@ module.exports = function(): any {
 
     this.After(this.timeout, async () => {
         await vscode.commands.executeCommand(ExtensionCommands.DISCONNECT);
+        await TestUtil.restoreGatewaysConfig();
+        await TestUtil.restoreRuntimesConfig();
+        await TestUtil.restoreExtensionDirectoryConfig();
+        await TestUtil.restoreRepositoriesConfig();
+        await TestUtil.restoreWalletsConfig();
+        await fs.remove(contractDir);
     });
 };
